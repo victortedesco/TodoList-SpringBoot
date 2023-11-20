@@ -14,8 +14,12 @@ import java.util.UUID;
 @RequestMapping("/api/todo")
 public class TodoController {
 
+    private final TodoService todoService;
+
     @Autowired
-    private TodoService todoService;
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
+    }
 
     @GetMapping("getall")
     @ResponseBody

@@ -7,4 +7,8 @@ public class TodoDTO {
 
     private String name;
     private boolean taskCompleted;
+
+    public Todo transformToTodo() {
+        return new Todo(name, taskCompleted);
+    }
 }

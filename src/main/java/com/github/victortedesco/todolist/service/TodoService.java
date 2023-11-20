@@ -17,8 +17,13 @@ import java.util.stream.Collectors;
 @Service
 public class TodoService {
 
+
+    private final TodoRepository todoRepository;
+
     @Autowired
-    private TodoRepository todoRepository;
+    public TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
 
     private static boolean isMatch(String fullName, String searchTerm) {
         String normalizedFullName = removeAccents(fullName.toLowerCase());
@@ -54,10 +59,7 @@ public class TodoService {
     }
 
     public boolean addTodo(TodoDTO todo) {
-        Todo newTodo = new Todo();
-        newTodo.setName(todo.getName());
-        newTodo.setTaskCompleted(todo.isTaskCompleted());
-        todoRepository.save(newTodo);
+        todoRepository.save(todo.transformToTodo());
         return true;
     }
 

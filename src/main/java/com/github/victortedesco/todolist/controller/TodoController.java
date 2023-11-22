@@ -21,7 +21,7 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @GetMapping("get/all")
+    @GetMapping("getall")
     @ResponseBody
     public List<Todo> getAll() {
         return todoService.getAll();
